@@ -21,6 +21,6 @@ model orders {
 
   total_price   Decimal      @db.Money
 
-  order_date DateTime    @db.Date
-  shipping_date  Decimal    @db.Date
+  order_date DateTime    @db.Date @default(now())
+  shipping_date  DateTime    @db.Date
 }
