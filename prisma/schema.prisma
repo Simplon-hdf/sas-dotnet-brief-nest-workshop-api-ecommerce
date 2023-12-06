@@ -7,6 +7,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Products {
+    UUID        String @id(map: "products_uuid") @unique() @default(uuid()) @db.Char(36)
+    Name        String @db.VarChar(20)
+    Description String @db.VarChar(500)
+    Price       Float
+    Quantity    Int
+    CreatedAt   DateTime
+    UpdatedAt   DateTime
+ }
+
 model Users {
   UUID          String     @id(map: "users_uuid") @unique() @default(uuid()) @db.VarChar(36) //UUIDv4
   user_pseudo   String     @unique() @db.VarChar(20)
