@@ -22,6 +22,6 @@ model Users {
   user_pseudo   String     @unique() @db.VarChar(20)
   username      String     @unique() @db.VarChar(30)
   user_password String     @unique() @db.VarChar(72)
-  created_at    DateTime   @default(now())
+  created_at    DateTime   @db.Date @default(now())
  //  Products Products[]
 }
