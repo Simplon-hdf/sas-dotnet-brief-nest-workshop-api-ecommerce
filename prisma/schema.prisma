@@ -6,3 +6,21 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model orders {
+
+  id       Int    @db.Int @default(autoincrement())
+
+  user_UUID String
+  user     users @relation(fields: [user_UUID], references: [UUID])    
+
+  product_UUID String
+  product   products @relation(fields: [product_UUID],references: [UUID])
+
+  product_quantity     Int @db.Integer @min(1)
+
+  total_price   Decimal      @db.Money
+
+  order_date DateTime    @db.Date
+  shipping_date  Decimal    @db.Date
+}
