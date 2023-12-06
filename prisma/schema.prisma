@@ -16,3 +16,12 @@ model Products {
     CreatedAt   DateTime
     UpdatedAt   DateTime
  }
+
+model Users {
+  UUID          String     @id(map: "users_uuid") @unique() @default(uuid()) @db.VarChar(36) //UUIDv4
+  user_pseudo   String     @unique() @db.VarChar(20)
+  username      String     @unique() @db.VarChar(30)
+  user_password String     @unique() @db.VarChar(72)
+  created_at    DateTime   @default(now())
+ //  Products Products[]
+}
