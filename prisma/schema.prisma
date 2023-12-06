@@ -15,7 +15,4 @@ model Products {
     Quantity    Int
     CreatedAt   DateTime
     UpdatedAt   DateTime
-  
-    //  authorUUID  String @db.VarChar(36) // Ref to UUIDv4
-    //  Author      Users  @relation(map: "product_author", fields: [authorUUID], references: [UUID])
-}
+ }

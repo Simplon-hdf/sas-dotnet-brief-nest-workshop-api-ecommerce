@@ -11,5 +11,5 @@ CREATE TABLE "Products" (
     CONSTRAINT "products_uuid" PRIMARY KEY ("UUID")
 );
 
--- CreateIndex
+-- CreateIndex 
 CREATE UNIQUE INDEX "Products_UUID_key" ON "Products"("UUID");
