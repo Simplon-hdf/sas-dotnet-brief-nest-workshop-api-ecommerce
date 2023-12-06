@@ -63,11 +63,12 @@ export class UsersService {
 
     public async removeByUUID(uuid: string) {
         const remvoedUser = new NormalizedResponse(
-          `User ${uuid} has been deleted`, await this.prisma.users.delete({
-            where:{
-              UUID: uuid
-            },
-          }),
+            `User ${uuid} has been deleted`,
+            await this.prisma.users.delete({
+                where: {
+                    UUID: uuid,
+                },
+            }),
         ).toJSON();
     }
 }
