@@ -11,12 +11,10 @@ export class ProductsService {
     async create(createProductDto: CreateProductDto) {
         const product = await this.prisma.products.create({
             data: {
-                Name: createProductDto.name,
-                Description: createProductDto.description,
-                Price: createProductDto.price,
-                Quantity: createProductDto.quantity,
-                CreatedAt: new Date().toISOString(),
-                UpdatedAt: new Date().toISOString(),
+                name: createProductDto.name,
+                description: createProductDto.description,
+                price: createProductDto.price,
+                quantity: createProductDto.quantity
             },
         });
 
@@ -42,11 +40,11 @@ export class ProductsService {
     async update(uuid: string, updateProductDto: UpdateProductDto) {
         const product = await this.prisma.products.update({
             data: {
-                Name: updateProductDto.name,
-                Description: updateProductDto.description,
-                Price: updateProductDto.price,
-                Quantity: updateProductDto.quantity,
-                UpdatedAt: new Date().toISOString(),
+                name: updateProductDto.name,
+                description: updateProductDto.description,
+                price: updateProductDto.price,
+                quantity: updateProductDto.quantity,
+                updated_at: new Date().toISOString(),
             },
             where: {
                 UUID: uuid,
