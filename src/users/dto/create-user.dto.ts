@@ -27,12 +27,4 @@ export class CreateUserDto {
     @IsNotEmpty()
     @Length(72, 72)
     user_password: string;
-
-    @ApiProperty({
-        description:
-            'This field represents the date at which this user was created',
-    })
-    @IsDate()
-    @IsNotEmpty()
-    create_at: Date;
 }
