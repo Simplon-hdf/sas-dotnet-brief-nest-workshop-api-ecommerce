@@ -41,8 +41,7 @@ export class UsersService {
                     UUID: uuid,
                 },
             }),
-        );
-       return gettedUser.toJSON();
+        ).toJSON();
     }
 
     public async updateByUUID(uuid: string, updateUserDto: UpdateUserDto) {
