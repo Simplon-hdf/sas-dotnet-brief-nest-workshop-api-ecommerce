@@ -16,7 +16,7 @@ export class UsersService {
                     user_pseudo: createUserDto.user_pseudo,
                     username: createUserDto.username,
                     user_password: createUserDto.user_password,
-                    created_at: createUserDto.create_at,
+                    updated_at: new Date().toISOString(),
                 },
             }),
         ).toJSON();
@@ -55,7 +55,6 @@ export class UsersService {
                     user_pseudo: updateUserDto.user_pseudo,
                     username: updateUserDto.username,
                     user_password: updateUserDto.user_password,
-                    created_at: updateUserDto.create_at,
                 },
             }),
         ).toJSON();
@@ -63,11 +62,12 @@ export class UsersService {
 
     public async removeByUUID(uuid: string) {
         const remvoedUser = new NormalizedResponse(
-          `User ${uuid} has been deleted`, await this.prisma.users.delete({
-            where:{
-              UUID: uuid
-            },
-          }),
+            `User ${uuid} has been deleted`,
+            await this.prisma.users.delete({
+                where: {
+                    UUID: uuid,
+                },
+            }),
         ).toJSON();
     }
 }

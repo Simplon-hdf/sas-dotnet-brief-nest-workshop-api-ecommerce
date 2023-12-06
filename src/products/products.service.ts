@@ -6,7 +6,7 @@ import NormalizedResponse from 'src/utils/normalized-response';
 
 @Injectable()
 export class ProductsService {
-    constructor(private readonly prisma: PrismaService) { }
+    constructor(private readonly prisma: PrismaService) {}
 
     async create(createProductDto: CreateProductDto) {
         const product = await this.prisma.products.create({
@@ -18,13 +18,19 @@ export class ProductsService {
             },
         });
 
-        return new NormalizedResponse("Product created successfully", product).toJSON();
+        return new NormalizedResponse(
+            'Product created successfully',
+            product,
+        ).toJSON();
     }
 
     async findAll() {
         const products = await this.prisma.products.findMany();
 
-        return new NormalizedResponse("Products retrieved successfully", products).toJSON();
+        return new NormalizedResponse(
+            'Products retrieved successfully',
+            products,
+        ).toJSON();
     }
 
     async getByUUID(uuid: string) {
@@ -34,7 +40,10 @@ export class ProductsService {
             },
         });
 
-        return new NormalizedResponse("Product retrieved successfully", product).toJSON();
+        return new NormalizedResponse(
+            'Product retrieved successfully',
+            product,
+        ).toJSON();
     }
 
     async update(uuid: string, updateProductDto: UpdateProductDto) {
@@ -51,7 +60,10 @@ export class ProductsService {
             },
         });
 
-        return new NormalizedResponse("Product updated successfully", product).toJSON();
+        return new NormalizedResponse(
+            'Product updated successfully',
+            product,
+        ).toJSON();
     }
 
     remove(uuid: string) {
@@ -61,6 +73,9 @@ export class ProductsService {
             },
         });
 
-        return new NormalizedResponse("Product deleted successfully", product).toJSON();
+        return new NormalizedResponse(
+            'Product deleted successfully',
+            product,
+        ).toJSON();
     }
 }
