@@ -15,7 +15,6 @@ model Products {
   Quantity    Int
   CreatedAt   DateTime @default(now())
   UpdatedAt   DateTime @default(now())
-  orders      orders[]
 }
 
 model Users {
@@ -31,12 +30,11 @@ model Users {
 model orders {
   id               Int      @unique @default(autoincrement()) @db.Integer
   user_UUID        String
-  product_UUID     String
   product_quantity Int      @db.Integer
   total_price      Decimal  @db.Money
   order_date       DateTime @default(now()) @db.Date
   shipping_date    DateTime @db.Date
 
   user    Users    @relation(fields: [user_UUID], references: [UUID])
-  product Products @relation(fields: [product_UUID], references: [UUID])
+  // product Products @relation(fields: [product_UUID], references: [UUID])
 }
