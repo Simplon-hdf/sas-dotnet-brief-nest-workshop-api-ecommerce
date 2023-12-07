@@ -15,7 +15,8 @@ model Products {
   quantity    Int
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now())
-  //    orders        Orders[]
+
+  orders OrdersProducts[]
 }
 
 model Users {
@@ -30,12 +31,22 @@ model Users {
 }
 
 model Orders {
-  id                    Int      @id(map: "orders_id") @unique() @default(autoincrement()) @db.Integer
-  user_UUID             String
-  order_total_quantity  Int      @db.Integer
-  order_total_cost_ht   Decimal  @db.Money
-  created_at            DateTime @default(now()) @db.Date
-  deliver_at            DateTime @db.Date
+  id                   Int              @id(map: "orders_id") @unique() @default(autoincrement()) @db.Integer
+  user_UUID            String
+  order_total_quantity Int              @db.Integer
+  order_total_cost_ht  Decimal          @db.Money
+  created_at           DateTime         @default(now()) @db.Date
+  deliver_at           DateTime         @db.Date
+  products             OrdersProducts[]
 
   user Users @relation(fields: [user_UUID], references: [UUID])
+}
+
+model OrdersProducts {
+  order        Orders   @relation(fields: [order_id], references: [id])
+  order_id     Int
+  product      Products @relation(fields: [product_UUID], references: [UUID])
+  product_UUID String
+
+  @@id([order_id, product_UUID])
 }
