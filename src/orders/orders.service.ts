@@ -2,15 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { PrismaService } from 'src/prisma.service';
-import NormalizedResponse from 'utils/noramlized-response';
+import NormalizedResponse from 'src/utils/normalized-response';
 
 @Injectable()
 export class OrdersService {
     constructor(private readonly prisma: PrismaService) {}
 
     public async create(createOrderDto: CreateOrderDto) {
-        const shippingDate = new Date();
-        shippingDate.setDate(shippingDate.getDate() + 7);
+        const deliverAt = new Date();
+        deliverAt.setDate(deliverAt.getDate() + 7);
+
+        const orderTotalCostHT: number = 0;
+
+        const orderTotalQuantity: number = 0;
 
         const createOrder = await this.prisma.orders.create({
             data: {
@@ -19,9 +23,9 @@ export class OrdersService {
                         UUID: createOrderDto.user_UUID,
                     },
                 },
-                product_quantity: createOrderDto.product_quantity,
-                total_price: createOrderDto.total_order,
-                shipping_date: shippingDate,
+                order_total_cost_ht: orderTotalCostHT,
+                order_total_quantity: orderTotalQuantity,
+                deliver_at: deliverAt,
             },
         });
 
