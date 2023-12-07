@@ -9,14 +9,13 @@ export class UsersService {
     constructor(private readonly prisma: PrismaService) {}
 
     public async create(createUserDto: CreateUserDto) {
-        const createdUser = new NormalizedResponse(
+        return new NormalizedResponse(
             `User ${createUserDto.user_pseudo} has been created`,
             await this.prisma.users.create({
                 data: {
                     user_pseudo: createUserDto.user_pseudo,
                     username: createUserDto.username,
                     user_password: createUserDto.user_password,
-                    updated_at: new Date().toISOString(),
                 },
             }),
         ).toJSON();
