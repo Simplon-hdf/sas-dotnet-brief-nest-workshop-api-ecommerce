@@ -32,10 +32,10 @@ export class UsersController {
         return this.usersService.getByUUID(uuid);
     }
 
-    @Get('orders')
-    getOrderByUUID(@Param('uuid') uuid: string) {
-        return this.orderService.getOrderByUUID(uuid);
-    }
+    // @Get('orders')
+    // getOrderByUUID(@Param('uuid') uuid: string) {
+    //     return this.orderService.getOrderByUUID(uuid);
+    // }
 
     @Patch(':uuid')
     updateByUUID(
