@@ -8,33 +8,36 @@ datasource db {
 }
 
 model Products {
-  UUID        String   @id(map: "products_uuid") @unique() @default(uuid()) @db.Char(36)
-  Name        String   @db.VarChar(20)
-  Description String   @db.VarChar(500)
-  Price       Float
-  Quantity    Int
-  CreatedAt   DateTime @default(now())
-  UpdatedAt   DateTime @default(now())
+  UUID          String   @id(map: "products_uuid") @unique() @default(uuid()) @db.Char(36)
+  name          String   @db.VarChar(20)
+  description   String   @db.VarChar(500)
+  price         Decimal  @db.Money
+  quantity      Int
+  created_at    DateTime @default(now())
+  updated_at    DateTime @default(now())
+  orders        Orders[]
 }
 
 model Users {
   UUID          String   @id(map: "users_uuid") @unique() @default(uuid()) @db.VarChar(36) //UUIDv4
-  user_pseudo   String   @unique() @db.VarChar(20)
-  username      String   @unique() @db.VarChar(30)
-  user_password String   @unique() @db.VarChar(72)
+  user_pseudo   String   @db.VarChar(20)
+  username      String   @unique @db.VarChar(30)
+  user_password String   @db.VarChar(72)
   created_at    DateTime @default(now()) @db.Date
-  //  Products Products[]
-  orders        orders[]
+  updated_at   DateTime  @default(now()) @db.Date
+
+  orders        Orders[]
 }
 
-model orders {
-  id               Int      @unique @default(autoincrement()) @db.Integer
+model Orders {
+  id               Int      @id(map: "orders_id") @unique() @default(autoincrement()) @db.Integer
   user_UUID        String
+  product_UUID     String
   product_quantity Int      @db.Integer
   total_price      Decimal  @db.Money
   order_date       DateTime @default(now()) @db.Date
   shipping_date    DateTime @db.Date
 
   user    Users    @relation(fields: [user_UUID], references: [UUID])
-  // product Products @relation(fields: [product_UUID], references: [UUID])
+ 
 }

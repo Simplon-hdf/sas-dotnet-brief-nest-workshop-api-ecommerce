@@ -10,8 +10,10 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
+@ApiTags('Users')
 export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
@@ -28,6 +30,11 @@ export class UsersController {
     @Get()
     getByUUID(@Param('uuid') uuid: string) {
         return this.usersService.getByUUID(uuid);
+    }
+
+    @Get('orders')
+    getOrderByUUID(@Param('uuid') uuid: string) {
+        return this.orderService.getOrderByUUID(uuid);
     }
 
     @Patch(':uuid')
