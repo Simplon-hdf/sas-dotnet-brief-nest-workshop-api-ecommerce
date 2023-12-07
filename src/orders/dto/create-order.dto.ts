@@ -1,14 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Decimal } from '@prisma/client/runtime/library';
-import { IsDate, IsDecimal, IsNumber } from 'class-validator';
+import { IsNumber, IsUUID } from 'class-validator';
 
 export class CreateOrderDto {
-    @ApiProperty({
-        description: 'This field represents the order number',
-    })
-    @IsNumber()
-    id: number;
-
     @ApiProperty({
         description: 'This field represents the product quantity',
     })
@@ -16,20 +9,14 @@ export class CreateOrderDto {
     product_quantity: number;
 
     @ApiProperty({
-        description: 'This field represents when the order total price',
+        description: 'This field represents the user UUID',
     })
-    @IsDecimal()
-    total_price: Decimal;
+    @IsUUID()
+    user_UUID: string;
 
     @ApiProperty({
-        description: 'This field represents when the order was created',
+        description: 'This field represents the order total price',
     })
-    @IsDate()
-    order_date: Date;
-
-    @ApiProperty({
-        description: 'This field represents when the order was shipped',
-    })
-    @IsDate()
-    shipping_date: Date;
+    @IsNumber()
+    total_order: number;
 }
