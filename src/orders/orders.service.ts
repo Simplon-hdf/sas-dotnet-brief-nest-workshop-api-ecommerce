@@ -9,18 +9,27 @@ export class OrdersService {
     constructor(private readonly prisma: PrismaService) {}
 
     public async create(createOrderDto: CreateOrderDto) {
-        const createOrder = new NormalizedResponse(
-            `Order n° ${createOrderDto.id} has been created`,
-            await this.prisma.orders.create({
-                data: {
-                    id: createOrderDto.id,
-                    product_quantity: createOrderDto.product_quantity,
-                    total_price: createOrderDto.total_price,
-                    order_date: createOrderDto.order_date,
-                    shipping_date: createOrderDto.shipping_date,
+        const shippingDate = new Date();
+        shippingDate.setDate(shippingDate.getDate() + 7);
+
+        const createOrder = await this.prisma.orders.create({
+            data: {
+                user: {
+                    connect: {
+                        UUID: createOrderDto.user_UUID,
+                    },
                 },
-            }),
+                product_quantity: createOrderDto.product_quantity,
+                total_price: createOrderDto.total_order,
+                shipping_date: shippingDate,
+            },
+        });
+
+        const createdOrder = new NormalizedResponse(
+            `Order n° ${createOrder.id} has been created`,
+            createOrder,
         ).toJSON();
+        return createdOrder;
     }
 
     findAll() {
@@ -49,7 +58,5 @@ export class OrdersService {
                 },
             }),
         ).toJSON();
-
-        return `This action removes a #${id} order`;
     }
 }
