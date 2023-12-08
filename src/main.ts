@@ -9,9 +9,9 @@ async function bootstrap() {
     app.useGlobalPipes(new ValidationPipe());
 
     const config = new DocumentBuilder()
-        .setTitle('API de Nectr')
+        .setTitle('Nectr API')
         .setDescription(
-            "Notre boutique Nectr expose une API permettant de manipuler les utilisateurs, les produits et les commandes. Il s'agit ici de la documentation de cette API.",
+            'Our Nectr store exposes an API to manipulate users, products and orders. This is the documentation for this API.',
         )
         .setVersion('1.0')
         .build();
