@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ArrayMinSize, IsArray, IsInt, IsNotEmpty, IsUUID, Length, Min } from 'class-validator';
+import {
+    ArrayMinSize,
+    IsArray,
+    IsInt,
+    IsNotEmpty,
+    IsUUID,
+    Min,
+} from 'class-validator';
 
 export class CreateOrderDto {
     @ApiProperty({
@@ -10,14 +17,15 @@ export class CreateOrderDto {
     user_UUID: string;
 
     @ApiProperty({
-        description: 'This field represents products in this order (array of CreateOrderDtoProductItem)',
+        description:
+            'This field represents products in this order (array of CreateOrderDtoProductItem)',
     })
     @IsArray()
     @ArrayMinSize(1)
-    products: CreateOrderDtoProductItem[];
+    products: CreateOrderDtoOrderItem[];
 }
 
-export class CreateOrderDtoProductItem {
+export class CreateOrderDtoOrderItem {
     @ApiProperty({
         description: 'This field represents the product UUID',
     })
