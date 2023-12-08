@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
 import {
     ArrayMinSize,
     IsArray,
@@ -22,6 +23,7 @@ export class CreateOrderDto {
     })
     @IsArray()
     @ArrayMinSize(1)
+    @Type(() => CreateOrderDtoOrderItem)
     products: CreateOrderDtoOrderItem[];
 }
 
