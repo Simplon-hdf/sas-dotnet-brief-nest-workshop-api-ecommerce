@@ -1,73 +1,84 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+# API de notre boutique "Nectr"
+
+<img src="./doc/img/logo.png">
+
+## Table des matières
+
+<ul>
+    <li><a href="#contexte">Contexte</a></li>
+    <li><a href="#présentation">Présentation</a></li>
+    <li><a href="#technologies">Technologies</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#documentation-de-lapi">Documentation de l'API</a></li>
+</ul>
+
+## Contexte
+
+Ce repo a été créé dans le cadre de la formation "Développeur .Net" avec Simplon & M2I en novembre 2023.
+
+## Présentation
+
+Ce repo contient le code source de l'API de notre boutique en ligne "Nectr".
+
+Notre API permet :
+
+-   de gérer les utilisateurs (création, modification, suppression)
+-   de gérer les produits (création, modification, suppression)
+-   de gérer les commandes (création, modification, suppression)
+
+Notre API est consommable via HTTP (ou HTTPS si un certificat SSL est installé), en utilisant les verbes HTTP adéquoits (`GET`, `POST`, `PATCH`, `DELETE`).
+
+## Technologies
+
+<p>
+    <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-006d77?style=flat-square&logo=typescript&logoColor=white" />
+    <img alt="Node.js" src="https://img.shields.io/badge/-Node.js-006d77?style=flat-square&logo=node.js&logoColor=white" />
+    <img alt="NestJs" src="https://img.shields.io/badge/-NestJs-006d77?style=flat-square&logo=nestjs&logoColor=white" />
+    <img alt="Swagger" src="https://img.shields.io/badge/-Swagger-006d77?style=flat-square&logo=swagger&logoColor=white" />
 </p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+<p>
+    <img alt="PostegreSql" src="https://img.shields.io/badge/-PostgreSql-83c5be?style=flat-square&logo=postgresql&logoColor=white" />
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
-```bash
-$ pnpm install
-```
+Cloner le projet :
 
-## Running the app
+    $ git clone git@github.com:Simplon-hdf/sas-dotnet-brief-nest-workshop-api-ecommerce.git
 
-```bash
-# development
-$ pnpm run start
+Installer les dépendances (via npm, pnpm, etc.) :
 
-# watch mode
-$ pnpm run start:dev
+    $ npm install
 
-# production mode
-$ pnpm run start:prod
-```
-
-## Test
+Paramétrer l'accès à la base de données définissant la variable d'environnement `DATABASE_URL` en indiquant la chaîne de connexion à la base de données.
+Il est possible de créer un fichier `.env` à la racine du projet contenant par exemple (pour PostgreSQL) :
 
 ```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+DATABASE_URL="postgresql://user:password@host/database"
 ```
 
-## Support
+> [!NOTE]
+> Le rôle associé à l'utiliseur de connexion doit disposer de la clause `CREATEDB` (https://docs.postgresql.fr/10/sql-createrole.html)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Pour savoir comment créer une chaîne de connexion : [Documentation de Prisma concernant les chaînes de connexion (PostgreSQL, MySQL, SQLite, SQL Server, MongoDB et CockroachDB)](https://pris.ly/d/connection-strings)
 
-## Stay in touch
+Installer la base de données en exécutant les migrations :
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+    $ npx prisma migrate dev
 
-## License
+Exécuter le serveur :
 
-Nest is [MIT licensed](LICENSE).
+    $ npm run start
+
+**Alternative**: pour exécuter le serveur en mode "watch" (surveillance des modifications apportées aux fichiers et redémarrage du serveur automatique), pratique en mode développement :
+
+    $ npm run start:dev
+
+## Documentation de l'API
+
+La documentation complète de l'API (générée par [Swagger](https://docs.nestjs.com/openapi/introduction)) est disponible à cette adresse :
+
+    http://localhost:3000/api
+
+> [!NOTE]
+> Le serveur de l'API doit être démarrée pour pouvoir accéder à la documentation
